@@ -34,13 +34,16 @@ public class PacketDecoder {
                     System.out.println("Data stream finito da " + clientThread.getName());
                     clientThread.setConnectionState(3);
                     System.out.println("Processo la richiesta ricevuta da client " + clientThread.getName());
-                    dataManager.returnFile(clientThread);
+                    DataManager.returnFile(clientThread);
                     break;
                 }
                 System.out.println("Data from " + clientThread.getName() + " : " + packet);
                 break;
                 
             default:
+                if(clientThread.getConnectionState() == 3){
+                    System.out.println(clientThread.getName() + " ha richiesto dati anche se aveva chiuso la connessione");
+                }
                 System.out.println(clientThread.getConnectionState() + "???");
                 break;
         }

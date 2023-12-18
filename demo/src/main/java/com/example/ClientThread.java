@@ -1,5 +1,6 @@
 package com.example;
 
+import java.io.File;
 import java.net.Socket;
 import com.example.ClientConnection;
 
@@ -66,5 +67,22 @@ public class ClientThread extends Thread{
         do {
             PacketManager.getInstance().packetRead(connessione.getLine(), this);
         } while (isRunning());
+    }
+
+    public String getFileContentType(){
+        switch (this.getRequestedPath().split("\\.")[1]) {
+            case "html":
+                return "text/html";
+            case "png":
+                return "image/png";
+            case "css":
+                return "text/css";
+            case "txt":
+                return "text/plain";
+            case "gif":
+                return "image/gif";
+            default:
+                return "";
+        }
     }
 }

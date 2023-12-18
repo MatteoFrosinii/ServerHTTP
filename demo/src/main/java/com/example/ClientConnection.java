@@ -48,6 +48,9 @@ public class ClientConnection {
             throw new RuntimeException(e);
         }
     }
+    public DataOutputStream getOut() {
+        return out;
+    }
     public void close() {
         try {
             s.close();
